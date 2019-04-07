@@ -1,5 +1,5 @@
 const Query = {
-  hello() {
+  hello(): string {
     return "Hello World!";
   },
 };
