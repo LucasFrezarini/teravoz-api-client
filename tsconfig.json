@@ -6,7 +6,14 @@
     "noEmit": true,
     "strict": true,
     "isolatedModules": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@services/*": ["./src/services/*"],
+      "@resolvers/*": ["./src/resolvers/*"],
+      "@data/*": ["./src/data/*"],
+      "@handlers/*": ["./src/handlers/*"]
+    }
   },
   "include": ["src"]
 }
