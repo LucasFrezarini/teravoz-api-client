@@ -9,6 +9,6 @@ case  "$1" in
   docker-compose up -d --build
   echo "Done!"
   ;;
-  *) docker exec -it teravoz-cli-node "${@:2}"
+  *) docker exec -it teravoz-cli-node "${@:1}"
   ;;
 esac
