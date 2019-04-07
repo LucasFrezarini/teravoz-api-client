@@ -1,0 +1,16 @@
+version: "3"
+services:
+  teravoz-cli-node:
+    image: "node:10.15.3-alpine"
+    container_name: teravoz-cli-node
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/app
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - teravoz-cli
+networks:
+  teravoz-cli:
+    driver: bridge
