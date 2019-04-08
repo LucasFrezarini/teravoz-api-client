@@ -1,5 +1,6 @@
 type Query {
   calls: [Calls!]!
+  contacts: [String!]!
 }
 
 type Calls {
@@ -7,8 +8,8 @@ type Calls {
   call_id: String!
   code: String!
   direction: String!
-  our_number: Int!
-  their_number: Int!
+  our_number: String!
+  their_number: String!
   their_number_type: String!
   timestamp: String!
 }

@@ -10,6 +10,13 @@ const Query = {
 
     return obj.calls;
   },
+
+  async contacts(): Promise<any> {
+    const data = await readFile(jsonPath, "utf8");
+    const obj = JSON.parse(data);
+
+    return obj.contacts;
+  },
 };
 
 export default Query;
