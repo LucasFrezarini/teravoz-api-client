@@ -1,11 +1,10 @@
 import path from "path";
 import fs from "fs";
-import { promisify } from "util";
 
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
+import { readFile, writeFile } from "@utils/fs-promise";
 
 const jsonPath = path.join(__dirname, "..", "data", "data.json");
+
 class CallService {
   public constructor() {
     const data = fs.readFileSync(jsonPath, "utf8");

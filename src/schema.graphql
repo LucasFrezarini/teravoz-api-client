@@ -1,3 +1,14 @@
 type Query {
-  hello: String!
+  calls: [Calls!]!
+}
+
+type Calls {
+  type: String!
+  call_id: String!
+  code: String!
+  direction: String!
+  our_number: Int!
+  their_number: Int!
+  their_number_type: String!
+  timestamp: String!
 }

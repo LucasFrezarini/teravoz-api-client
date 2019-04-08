@@ -12,7 +12,8 @@
       "@services/*": ["./src/services/*"],
       "@resolvers/*": ["./src/resolvers/*"],
       "@data/*": ["./src/data/*"],
-      "@handlers/*": ["./src/handlers/*"]
+      "@handlers/*": ["./src/handlers/*"],
+      "@utils/*": ["./src/utils/*"]
     },
     "resolveJsonModule": true
   },

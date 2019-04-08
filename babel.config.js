@@ -13,6 +13,7 @@ module.exports = function(api) {
           "@resolvers": "./src/resolvers",
           "@data": "./src/data",
           "@handlers": "./src/handlers",
+          "@utils": "./src/utils",
         },
       },
     ],
