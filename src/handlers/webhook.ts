@@ -5,7 +5,9 @@ import { Call } from "@interfaces/Data";
 
 import { validationResult } from "express-validator/check";
 
-const webhookHandler = async (
+import Context from "@interfaces/Context";
+
+const webhookHandler = ({ pubSub }: Context): any => async (
   req: Request,
   res: Response,
 ): Promise<Response> => {
@@ -19,16 +21,30 @@ const webhookHandler = async (
     const call: Call = req.body;
     const { type } = call;
 
-    switch (type) {
-      case "call.new":
-        await CallService.newCall(call);
-        break;
-      case "call.standby":
-        await CallService.standBy(call);
-        break;
-      default:
-        await CallService.update(call);
-        break;
+    if (type === "call.new") {
+      await CallService.newCall(call);
+      pubSub.publish("calls", {
+        call: {
+          mutation: "CREATED",
+          data: call,
+        },
+      });
+    } else if (type === "call.standby") {
+      await CallService.standBy(call);
+      pubSub.publish("calls", {
+        call: {
+          mutation: "UPDATED",
+          data: call,
+        },
+      });
+    } else {
+      await CallService.update(call);
+      pubSub.publish("calls", {
+        call: {
+          mutation: "UPDATED",
+          data: call,
+        },
+      });
     }
 
     return res.status(200).json({ status: "ok" });

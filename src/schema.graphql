@@ -1,9 +1,13 @@
 type Query {
-  calls: [Calls!]!
+  calls: [Call!]!
   contacts: [String!]!
 }
 
-type Calls {
+type Subscription {
+  call: CallSubscriptionPayload!
+}
+
+type Call {
   type: String!
   call_id: String!
   code: String!
@@ -12,4 +16,15 @@ type Calls {
   their_number: String!
   their_number_type: String!
   timestamp: String!
+}
+
+type CallSubscriptionPayload {
+  mutation: MutationType!
+  data: Call!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
 }
