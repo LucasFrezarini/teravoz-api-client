@@ -1,4 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
+import bodyParser from "body-parser";
 
 import Query from "@resolvers/Query";
 import webhookHandler from "@handlers/webhook";
@@ -12,6 +13,7 @@ const server = new GraphQLServer({
   typeDefs: "./src/schema.graphql",
 });
 
+server.express.use(bodyParser.json());
 server.express.use("/api/call/webhook", webhookHandler);
 
 server.start(
