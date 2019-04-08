@@ -21,6 +21,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-validator": "^5.3.1",
     "graphql": "^14.2.1",
     "graphql-yoga": "^1.17.4"
   },
