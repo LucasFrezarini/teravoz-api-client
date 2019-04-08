@@ -13,7 +13,8 @@
       "@resolvers/*": ["./src/resolvers/*"],
       "@data/*": ["./src/data/*"],
       "@handlers/*": ["./src/handlers/*"],
-      "@utils/*": ["./src/utils/*"]
+      "@utils/*": ["./src/utils/*"],
+      "@interfaces/*": ["./src/interfaces/*"]
     },
     "resolveJsonModule": true
   },

@@ -14,6 +14,7 @@ module.exports = function(api) {
           "@data": "./src/data",
           "@handlers": "./src/handlers",
           "@utils": "./src/utils",
+          "@interfaces": "./src/interfaces",
         },
       },
     ],

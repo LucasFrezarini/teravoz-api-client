@@ -5,10 +5,12 @@ import { readFile, writeFile } from "@utils/fs-promise";
 
 const jsonPath = path.join(__dirname, "..", "data", "data.json");
 
+import Data, { Call } from "@interfaces/Data";
+
 class CallService {
   public constructor() {
     const data = fs.readFileSync(jsonPath, "utf8");
-    const obj = JSON.parse(data);
+    const obj: Data = JSON.parse(data);
     let shouldUpdate = false;
 
     if (!obj.calls) {
@@ -25,8 +27,19 @@ class CallService {
       fs.writeFileSync(jsonPath, json, "utf8");
     }
   }
-  public async newCall(call: any): Promise<any> {
+  public async newCall(call: Call): Promise<any> {
     const obj = await this.getData();
+
+    const isNew =
+      obj.calls.findIndex(
+        (registeredCall: any): any => registeredCall.call_id === call.call_id,
+      ) === -1;
+
+    if (!isNew) {
+      throw new Error(
+        `The call with id ${call.call_id} has been already registered`,
+      );
+    }
 
     obj.calls.push(call);
 
@@ -51,7 +64,7 @@ class CallService {
     return this.setData(obj);
   }
 
-  public async update(call: any): Promise<any> {
+  public async update(call: Call): Promise<any> {
     const obj = await this.getData();
 
     obj.calls = this.updateCall(obj.calls, call);
@@ -59,17 +72,17 @@ class CallService {
     return this.setData(obj);
   }
 
-  private async getData(): Promise<any> {
+  private async getData(): Promise<Data> {
     const data = await readFile(jsonPath, "utf8");
     return JSON.parse(data.toString());
   }
 
-  private async setData(data: any): Promise<any> {
+  private async setData(data: Data): Promise<any> {
     const json = JSON.stringify(data);
     return writeFile(jsonPath, json, "utf8");
   }
 
-  private updateCall(history: any[], call: any): any[] {
+  private updateCall(history: Call[], call: Call): any[] {
     const index = history.findIndex(
       (registeredCall: any): any => registeredCall.call_id === call.call_id,
     );
