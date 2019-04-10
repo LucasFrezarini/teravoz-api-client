@@ -4,13 +4,22 @@ services:
     image: "node:10.15.3-alpine"
     container_name: teravoz-cli-node
     ports:
-      - 4000:4000
+      - 4080:4000
     volumes:
       - ./:/app
     working_dir: /app
     command: npm run dev
     networks:
       - teravoz-cli
+  teravoz-cli-nginx:
+    container_name: teravoz-cli-nginx
+    build: ./docker/nginx/
+    ports:
+      - 4000:4000
+    networks:
+      - teravoz-cli
+    depends_on:
+      - teravoz-cli-node
 networks:
   teravoz-cli:
     driver: bridge

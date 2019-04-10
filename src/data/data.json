@@ -180,6 +180,16 @@
       "their_number": "11999990000",
       "their_number_type": "mobile",
       "timestamp": "2019-04-01T11:10:00Z"
+    },
+    {
+      "type": "call.new",
+      "call_id": "22",
+      "code": "123456",
+      "direction": "inbound",
+      "our_number": "0800000000",
+      "their_number": "11999990000",
+      "their_number_type": "mobile",
+      "timestamp": "2019-04-01T11:10:00Z"
     }
   ]
 }
