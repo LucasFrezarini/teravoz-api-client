@@ -21,6 +21,7 @@ class CallService {
       obj.calls = [];
       shouldUpdate = true;
     }
+
     if (!obj.contacts) {
       obj.contacts = [];
       shouldUpdate = true;
