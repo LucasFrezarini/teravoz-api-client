@@ -1,6 +1,7 @@
 interface Data {
   contacts: number[];
   calls: Call[];
+  delegate: DelegatePayload[];
 }
 
 export interface Call {
@@ -12,6 +13,12 @@ export interface Call {
   their_number: string;
   their_number_type: string;
   timestamp: string;
+}
+
+export interface DelegatePayload {
+  type: string;
+  call_id: string;
+  destination: number;
 }
 
 export default Data;

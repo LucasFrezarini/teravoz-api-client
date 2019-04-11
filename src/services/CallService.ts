@@ -3,13 +3,15 @@ import fs from "fs";
 
 import { readFile, writeFile } from "@utils/fs-promise";
 
-const jsonPath = path.join(__dirname, "..", "data", "data.json");
-
-import Data, { Call } from "@interfaces/Data";
+import Data, { Call, DelegatePayload } from "@interfaces/Data";
 
 class CallService {
+  private jsonPath: string;
+
   public constructor() {
-    const data = fs.readFileSync(jsonPath, "utf8");
+    this.jsonPath = path.join(__dirname, "..", "data", "data.json");
+
+    const data = fs.readFileSync(this.jsonPath, "utf8");
     const obj: Data = JSON.parse(data);
     let shouldUpdate = false;
 
@@ -24,7 +26,7 @@ class CallService {
 
     if (shouldUpdate) {
       const json = JSON.stringify(obj);
-      fs.writeFileSync(jsonPath, json, "utf8");
+      fs.writeFileSync(this.jsonPath, json, "utf8");
     }
   }
   public async newCall(call: Call): Promise<any> {
@@ -54,12 +56,16 @@ class CallService {
 
     obj.calls = this.updateCall(obj.calls, call);
 
+    let delegatedCall: DelegatePayload;
+
     if (!obj.contacts.includes(their_number)) {
       obj.contacts.push(their_number);
-      // Post to /actions with extension 900
+      delegatedCall = this.delegate(call);
     } else {
-      // post to /actions with extension 901
+      delegatedCall = this.delegate(call, 901);
     }
+
+    obj.delegate.push(delegatedCall);
 
     return this.setData(obj);
   }
@@ -72,14 +78,26 @@ class CallService {
     return this.setData(obj);
   }
 
+  public delegate(call: Call, destination: number = 900): DelegatePayload {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    const { type, call_id } = call;
+
+    return {
+      type,
+      // eslint-disable-next-line @typescript-eslint/camelcase
+      call_id,
+      destination,
+    };
+  }
+
   private async getData(): Promise<Data> {
-    const data = await readFile(jsonPath, "utf8");
+    const data = await readFile(this.jsonPath, "utf8");
     return JSON.parse(data.toString());
   }
 
   private async setData(data: Data): Promise<any> {
     const json = JSON.stringify(data);
-    return writeFile(jsonPath, json, "utf8");
+    return writeFile(this.jsonPath, json, "utf8");
   }
 
   private updateCall(history: Call[], call: Call): any[] {
