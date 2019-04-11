@@ -11,8 +11,10 @@ class CallService {
   public constructor() {
     this.jsonPath = path.join(__dirname, "..", "data", "data.json");
 
+    fs.closeSync(fs.openSync(this.jsonPath, "a")); // Create file if doesn't exists
+
     const data = fs.readFileSync(this.jsonPath, "utf8");
-    const obj: Data = JSON.parse(data);
+    const obj: Data = JSON.parse(data || "{}");
     let shouldUpdate = false;
 
     if (!obj.calls) {
@@ -21,6 +23,11 @@ class CallService {
     }
     if (!obj.contacts) {
       obj.contacts = [];
+      shouldUpdate = true;
+    }
+
+    if (!obj.delegate) {
+      obj.delegate = [];
       shouldUpdate = true;
     }
 
