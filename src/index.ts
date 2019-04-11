@@ -1,3 +1,5 @@
+import "@babel/polyfill";
+
 import { GraphQLServer, PubSub } from "graphql-yoga";
 import bodyParser from "body-parser";
 
