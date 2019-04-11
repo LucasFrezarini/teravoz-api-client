@@ -41,7 +41,24 @@ docker-compose up -d --build
 
 # Project Structure
 
-The project make use of GraphQL, to expose the data via Query and Subscriptions. Because Teravoz webhook send the data using a RESTful design, there is a default POST HTTP endpoint configurated to receive the data on the `/api/call/webhook`.
+The project make use of GraphQL, to expose the data via Query and Subscriptions. Because Teravoz webhook send the data using a RESTful design, there is a default POST HTTP endpoint configurated to receive the data on the `/api/call/webhook`. You can simulate the webhook requests importing the [Postman](https://www.getpostman.com/) collection on the root of the project or testing with another method. There's a example of the body that is sended for the webhook:
+
+```json
+{
+  "type": "call.new",
+  "call_id": "1236545732.95403",
+  "code": "1",
+  "direction": "inbound",
+  "our_number": "0800000000",
+  "their_number": "11951753654",
+  "their_number_type": "mobile",
+  "timestamp": "2019-04-10T01:16:00Z"
+}
+```
+
+The lifecycle of a call is defined by her type, in the following order: `call.new`, `call.standby`, `call.waiting`, `actor.entered`, `call.ongoing`, `actor.left`, `call.finished`.
+
+When a call enters on the state of `standby`, a new enter for the delegate logs is created with the POST body that should be sended from the `/delegate` endpoint on the Teravoz API. If the call is from a new contact, it creates the object with the destination `900`, and `901` if the contact already exists. How this is a simply mock of the requisition, no event is fired to a external endpoint at all.
 
 You can test the GraphQL queries and subscription on the GraphQL Playground, that can be accessed on the `/playground`.
 
@@ -68,7 +85,7 @@ query {
 }
 ```
 
-> You can view the full docs with all the Queries, Mutations and Subscriptions on the "Docs" tab in the GraphQL Playground
+> You can view the full docs with all the avaliable Queries, Mutations and Subscriptions on the "Docs" tab in the GraphQL Playground
 
 # Code Structure and Formatting
 

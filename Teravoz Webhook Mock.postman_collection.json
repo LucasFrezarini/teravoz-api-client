@@ -1,0 +1,151 @@
+{
+  "variables": [],
+  "info": {
+    "name": "Teravoz Webhook Mock",
+    "_postman_id": "5dc272b6-1bd8-3032-5657-588d5cda285e",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "New call",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"call.new\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Stand by",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"call.standby\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Waiting",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"call.waiting\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Actor Entered",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"actor.entered\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "On going",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"call.ongoing\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Actor left",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"actor.left\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Call finished",
+      "request": {
+        "url": "https://localhost:4000/api/call/webhook",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"call.finished\",\n  \"call_id\": \"1236545732.95403\",\n  \"code\": \"1\",\n  \"direction\": \"inbound\",\n  \"our_number\": \"0800000000\",\n  \"their_number\": \"11951753654\",\n  \"their_number_type\": \"mobile\",\n  \"timestamp\": \"2019-04-10T01:16:00Z\"\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
