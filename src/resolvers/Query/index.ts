@@ -20,6 +20,13 @@ const Query = {
 
     return obj.contacts;
   },
+
+  async delegates(): Promise<any> {
+    const data = await readFile(jsonPath, "utf8");
+    const obj = JSON.parse(data);
+
+    return obj.delegate;
+  },
 };
 
 export default Query;

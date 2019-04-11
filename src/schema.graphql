@@ -1,6 +1,7 @@
 type Query {
   calls: [Call!]!
   contacts: [String!]!
+  delegates: [Delegate!]!
 }
 
 type Subscription {
@@ -21,6 +22,12 @@ type Call {
 type CallSubscriptionPayload {
   mutation: MutationType!
   data: Call!
+}
+
+type Delegate {
+  type: String!
+  call_id: String!
+  destination: Int!
 }
 
 enum MutationType {
