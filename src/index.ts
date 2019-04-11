@@ -28,6 +28,9 @@ server.express.use(
 );
 
 server.start(
+  {
+    playground: "/playground",
+  },
   (): void => {
     console.log("Server running at port 4000");
   },
